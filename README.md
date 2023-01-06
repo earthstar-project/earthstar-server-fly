@@ -1,4 +1,4 @@
-# Earthstar Replica Server for Fly
+# Earthstar Server for Fly
 
 This template will help you deploy an Earthstar server on Fly.io. The server
 will run on the Deno runtime.
