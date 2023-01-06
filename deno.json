@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "server": "deno run --no-check --allow-all server.ts",
+    "server": "deno run --unstable --allow-all server.ts",
     "deploy": "flyctl deploy --remote-only",
     "docker": "docker build -t earthstar-replica-server . && docker run -v data:/app/data -it --init -p 8080:8080 earthstar-replica-server"
   }

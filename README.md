@@ -1,15 +1,11 @@
 # Earthstar Replica Server for Fly
 
-This template will help you deploy an Earthstar replica server on Fly.io.
+This template will help you deploy an Earthstar server on Fly.io. The server
+will run on the Deno runtime.
 
-The interesting thing about Fly.io is how many instances of the same application
-can be deployed around the world.
-
-You can use this to deploy your own swarm of replica servers around the world,
-which will sit behind the same URL. When someone connects to that URL they'll be
-connected to the instance closest to them.
-
-In the background, the instances will all sync with each other.
+If you'd like to further customise your server, you can learn more about servers
+and their extensions at the
+[main Earthstar repo](https://github.com/earthstar-project/earthstar/blob/main/README_SERVERS.md).
 
 Note: Fly requires a credit card to sign up. If you just want something a bit
 less involved,
@@ -17,28 +13,18 @@ less involved,
 
 ## Initial deployment
 
-1. [Install the `flyctl` command line tool](https://fly.io/docs/getting-started/installing-flyctl/)
-2. Make an account: `flyctl auth signup`
-3. Run `flyctl launch --no-deploy`. The command line will prompt you for a name
-   for your app.
-4. Run `flyctl volumes create share_data`. You'll be prompted for which region
+1. Create a new file called `known_shares.json` in the root of this project. Add
+   the public addresses of the shares you'd like your server to replicate as an
+   array of strings (e.g. `["+one.xxx", "two.xxx"]`).
+2. [Install the `fly` command line tool](https://fly.io/docs/getting-started/installing-flyctl/)
+3. Make an account: `fly auth signup`
+4. Run `fly launch --no-deploy`. The command line will prompt you for a name for
+   your app.
+5. Run `fly volumes create share_data`. You'll be prompted for which region
    you'd like this first volume to be in.
-5. (Optional) If you want to run a showcase server (where the contents of a
-   share are exposed over the web), set the share you'd like to expose the
-   contents of with `flyctl secrets set SOURCE_SHARE=+yoursharename.a123`.
-6. `flyctl deploy --remote-only`
-7. Check the logs at `flyctl logs`. There should be a message saying that the
+6. `fly deploy --remote-only`
+7. Check the logs at `fly logs`. There should be a message saying that the
    server is running and with the URL to sync from.
-
-It depends on how many shares your replica server is syncing, but if syncing is
-failing you may have to scale the amount of memory the server has. You can do
-this with `flyctl scale memory 512`.
-
-## Adding another replica server to another region
-
-Every time you want to add another instance of a replica server, you'll need to
-add a new volume with `flyctl volumes create share_data`. Each time you'll be
-prompted to choose a region the new instance will be in.
 
 ## Running locally
 
