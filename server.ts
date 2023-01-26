@@ -1,4 +1,5 @@
-import * as Earthstar from "https://deno.land/x/earthstar@v10.0.1/mod.ts";
+import * as Earthstar from "https://deno.land/x/earthstar@v10.0.0/mod.ts";
+import { DocDriverSqliteFfi } from "https://deno.land/x/earthstar@v10.0.0/src/replica/doc_drivers/sqlite_ffi.ts";
 
 // If FLY_APP_NAME isn't set, we're running locally.
 const FLY_APP_NAME = Deno.env.get("FLY_APP_NAME");
@@ -13,7 +14,7 @@ new Earthstar.Server([
       return new Earthstar.Replica(
         {
           driver: {
-            docDriver: new Earthstar.DocDriverSqlite({
+            docDriver: new DocDriverSqliteFfi({
               share: shareAddress,
               filename: `./data/${shareAddress}.sql`,
               mode: "create-or-open",
