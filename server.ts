@@ -1,4 +1,4 @@
-import * as Earthstar from "https://deno.land/x/earthstar@v10.0.1/mod.ts";
+import * as Earthstar from "https://deno.land/x/earthstar@v10.0.2/mod.ts";
 
 // If FLY_APP_NAME isn't set, we're running locally.
 const FLY_APP_NAME = Deno.env.get("FLY_APP_NAME");
