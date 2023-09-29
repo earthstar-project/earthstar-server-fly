@@ -1,12 +1,12 @@
-import * as Earthstar from "https://deno.land/x/earthstar@v10.0.0/mod.ts";
-import { DocDriverSqliteFfi } from "https://deno.land/x/earthstar@v10.0.0/src/replica/doc_drivers/sqlite_ffi.ts";
+import * as Earthstar from "https://deno.land/x/earthstar@v10.2.2/mod.ts";
+import { DocDriverSqliteFfi } from "https://deno.land/x/earthstar@v10.2.2/src/replica/doc_drivers/sqlite_ffi.ts";
 
 // If FLY_APP_NAME isn't set, we're running locally.
 const FLY_APP_NAME = Deno.env.get("FLY_APP_NAME");
 
 // Start the server.
 console.log("Starting up server...");
-new Earthstar.Server([
+const server = new Earthstar.Server([
   // Populate with shares from the a known shares list.
   new Earthstar.ExtensionKnownShares({
     knownSharesPath: "known_shares.json",
@@ -32,6 +32,8 @@ new Earthstar.Server([
     path: "/sync",
   }),
 ], { port: 8080 });
+
+console.log('server', server);
 
 // Use the presence of FLY_APP_NAME to figure out the URL for this server.
 const hostname = FLY_APP_NAME
