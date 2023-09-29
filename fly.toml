@@ -13,7 +13,7 @@ processes = []
 
 [mounts]
   destination = "/app/data"
-  source = "share_data"
+  source = "share_data_machines"
 
 [[services]]
   http_checks = []
